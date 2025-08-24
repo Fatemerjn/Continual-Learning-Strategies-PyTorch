@@ -1,0 +1,28 @@
+Using device: mps
+
+--- Training Solver on Task 1/10 ---
+Training generator for Task 1...
+Accuracies after Task 1: ['49.70']
+Average Accuracy: 49.70%
+
+--- Training Solver on Task 2/10 ---
+Training generator for Task 2...
+Accuracies after Task 2: ['27.80', '18.10']
+Average Accuracy: 22.95%
+
+--- Training Solver on Task 3/10 ---
+Training generator for Task 3...
+Accuracies after Task 3: ['12.60', '14.30', '9.30']
+Average Accuracy: 12.07%
+
+--- Training Solver on Task 4/10 ---
+Training generator for Task 4...
+Accuracies after Task 4: ['8.10', '10.60', '9.80', '10.40']
+Average Accuracy: 9.72%
+
+--- Training Solver on Task 5/10 ---
+Training generator for Task 5...
+Accuracies after Task 5: ['8.80', '10.90', '10.40', '10.30', '10.50']
+Average Accuracy: 10.18%
+
+--- Training Solver on Task 6/10 ---
