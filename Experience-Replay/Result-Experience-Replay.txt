@@ -1,0 +1,65 @@
+Using device: mps
+
+--- Training on Task 1/10 ---
+Updating memory buffer after Task 1...
+Buffer size is now: 50
+Accuracies after Task 1: ['46.90']
+Average Accuracy: 46.90%
+
+--- Training on Task 2/10 ---
+Updating memory buffer after Task 2...
+Buffer size is now: 100
+Accuracies after Task 2: ['39.10', '29.10']
+Average Accuracy: 34.10%
+
+--- Training on Task 3/10 ---
+Updating memory buffer after Task 3...
+Buffer size is now: 150
+Accuracies after Task 3: ['39.20', '28.60', '14.20']
+Average Accuracy: 27.33%
+
+--- Training on Task 4/10 ---
+Updating memory buffer after Task 4...
+Buffer size is now: 200
+Accuracies after Task 4: ['37.80', '27.20', '13.60', '13.90']
+Average Accuracy: 23.12%
+
+--- Training on Task 5/10 ---
+Updating memory buffer after Task 5...
+Buffer size is now: 250
+Accuracies after Task 5: ['37.10', '28.30', '13.60', '12.40', '8.40']
+Average Accuracy: 19.96%
+
+--- Training on Task 6/10 ---
+Updating memory buffer after Task 6...
+Buffer size is now: 300
+Accuracies after Task 6: ['37.60', '26.90', '14.00', '14.60', '9.20', '14.80']
+Average Accuracy: 19.52%
+
+--- Training on Task 7/10 ---
+Updating memory buffer after Task 7...
+Buffer size is now: 350
+Accuracies after Task 7: ['33.50', '25.40', '12.70', '14.80', '10.70', '15.60', '10.70']
+Average Accuracy: 17.63%
+
+--- Training on Task 8/10 ---
+Updating memory buffer after Task 8...
+Buffer size is now: 400
+Accuracies after Task 8: ['38.00', '27.90', '13.90', '12.10', '10.00', '13.70', '10.80', '10.10']
+Average Accuracy: 17.06%
+
+--- Training on Task 9/10 ---
+Updating memory buffer after Task 9...
+Buffer size is now: 450
+Accuracies after Task 9: ['37.70', '24.90', '14.00', '14.20', '8.40', '15.90', '10.50', '9.00', '11.10']
+Average Accuracy: 16.19%
+
+--- Training on Task 10/10 ---
+Updating memory buffer after Task 10...
+Buffer size is now: 500
+Accuracies after Task 10: ['35.20', '23.10', '14.10', '15.90', '7.90', '15.30', '9.90', '9.20', '10.80', '12.50']
+Average Accuracy: 15.39%
+
+--- Final Report ---
+Average Accuracy across all tasks at the end: 15.39%
+Average Forgetting: 2.59%
