@@ -30,11 +30,11 @@ def main():
     NUM_TASKS = 10
     BATCH_SIZE = 128
     EPOCHS_PER_TASK = 25
-    LR = 0.001
+    LR = 0.001 
     STRATEGY = 'EWC'
-    EWC_LAMBDA = 40000.0
+    EWC_LAMBDA = 5000.0  
 
-    # --- Device Setup for Apple Silicon ---
+    # --- Device Setup ---
     if torch.backends.mps.is_available():
         DEVICE = torch.device("mps")
         print("MPS device found. Using Apple Silicon GPU/NPU.")
@@ -49,12 +49,11 @@ def main():
 
     # --- Model Setup ---
     model = models.resnet18(weights=None)
-    model.fc = nn.Linear(model.fc.in_features, 10)
+    model.fc = nn.Linear(model.fc.in_features, 10) # 10 classes per task
     model.to(DEVICE)
 
     # --- Strategy Setup ---
     optimizer = optim.Adam(model.parameters(), lr=LR)
-    scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.1)
     criterion = nn.CrossEntropyLoss()
     
     cl_strategy = None
@@ -67,9 +66,7 @@ def main():
     for task_id in range(NUM_TASKS):
         train_loader, _ = task_dataloaders[task_id]
         print(f"\n--- Training on Task {task_id + 1}/{NUM_TASKS} ---")
-
-        # Reset optimizer and scheduler for each new task for stable training
-        optimizer = optim.Adam(model.parameters(), lr=LR)
+        
         scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.1)
 
         for epoch in range(EPOCHS_PER_TASK):
@@ -95,6 +92,7 @@ def main():
         if cl_strategy:
             cl_strategy.on_task_end(task_id, train_loader)
 
+        # --- Evaluation ---
         task_accuracies = []
         for i in range(task_id + 1):
             _, test_loader = task_dataloaders[i]
@@ -106,6 +104,7 @@ def main():
         avg_acc = np.mean(task_accuracies)
         print(f"Average Accuracy: {avg_acc:.2f}%")
         
+    # --- Final Results Analysis ---
     final_accuracies = results[-1]
     avg_final_accuracy = np.mean(final_accuracies)
     
@@ -115,12 +114,14 @@ def main():
         final_acc_i = final_accuracies[i]
         forgetting += (max_acc_i - final_acc_i)
     
-    avg_forgetting = forgetting / (NUM_TASKS - 1)
+    if NUM_TASKS > 1:
+        avg_forgetting = forgetting / (NUM_TASKS - 1)
+    else:
+        avg_forgetting = 0
 
     print("\n--- Final Report ---")
     print(f"Average Accuracy across all tasks at the end: {avg_final_accuracy:.2f}%")
     print(f"Average Forgetting: {avg_forgetting:.2f}%")
-
 
 if __name__ == "__main__":
     main()
