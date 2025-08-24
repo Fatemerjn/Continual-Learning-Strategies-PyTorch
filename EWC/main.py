@@ -5,7 +5,6 @@ import torchvision.models as models
 from tqdm import tqdm
 import numpy as np
 
-# Import our custom modules
 from utils import get_cifar100_dataloaders
 from strategies import EWC
 
@@ -26,7 +25,6 @@ def evaluate(model, test_loader, device):
     return 100 * correct / total
 
 def main():
-    # --- Configuration ---
     NUM_TASKS = 10
     BATCH_SIZE = 128
     EPOCHS_PER_TASK = 25
@@ -34,7 +32,6 @@ def main():
     STRATEGY = 'EWC'
     EWC_LAMBDA = 5000.0  
 
-    # --- Device Setup ---
     if torch.backends.mps.is_available():
         DEVICE = torch.device("mps")
         print("MPS device found. Using Apple Silicon GPU/NPU.")
@@ -44,15 +41,12 @@ def main():
     
     print(f"Using strategy: {STRATEGY} with lambda: {EWC_LAMBDA}")
 
-    # --- Data Loading ---
     task_dataloaders = get_cifar100_dataloaders(num_tasks=NUM_TASKS, batch_size=BATCH_SIZE)
 
-    # --- Model Setup ---
     model = models.resnet18(weights=None)
     model.fc = nn.Linear(model.fc.in_features, 10) # 10 classes per task
     model.to(DEVICE)
 
-    # --- Strategy Setup ---
     optimizer = optim.Adam(model.parameters(), lr=LR)
     criterion = nn.CrossEntropyLoss()
     
@@ -60,7 +54,6 @@ def main():
     if STRATEGY == 'EWC':
         cl_strategy = EWC(model, optimizer, criterion, DEVICE, lambda_ewc=EWC_LAMBDA)
 
-    # --- Training Loop ---
     results = []
 
     for task_id in range(NUM_TASKS):

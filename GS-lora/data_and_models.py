@@ -1,4 +1,3 @@
-# data_and_models.py
 import torch
 import torch.nn as nn
 import torchvision
@@ -6,7 +5,6 @@ import torchvision.transforms as transforms
 from torch.utils.data import Dataset, DataLoader
 import torchvision.models as models
 
-# 💡 FIX: Import the missing function from lora_utils.py
 from lora_utils import setup_lora_training
 
 class SplitCIFAR100(Dataset):

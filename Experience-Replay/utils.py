@@ -1,11 +1,9 @@
-# utils.py
 import torch
 import torchvision
 import torchvision.transforms as transforms
 from torch.utils.data import Dataset, DataLoader
 
 class SplitCIFAR100(Dataset):
-    # ... (کد این کلاس بدون تغییر باقی می‌ماند)
     def __init__(self, cifar100_dataset, class_indices):
         self.cifar100_dataset = cifar100_dataset
         self.class_map = {old_idx: new_idx for new_idx, old_idx in enumerate(class_indices)}
@@ -24,7 +22,6 @@ class SplitCIFAR100(Dataset):
         return image, new_label
 
 def get_cifar100_dataloaders(num_tasks=10, batch_size=32):
-    # ... (کد این تابع بدون تغییر باقی می‌ماند)
     transform = transforms.Compose([
         transforms.ToTensor(),
         transforms.Normalize((0.5071, 0.4867, 0.4408), (0.2675, 0.2565, 0.2761))

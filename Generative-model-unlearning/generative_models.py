@@ -1,10 +1,8 @@
-# generative_models.py
 import torch
 import torch.nn as nn
 import torch.optim as optim
 from tqdm import tqdm
 
-# A simple Convolutional VAE for CIFAR-100 images
 class VAE(nn.Module):
     def __init__(self, latent_dim=128):
         super(VAE, self).__init__()

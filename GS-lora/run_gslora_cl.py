@@ -1,4 +1,3 @@
-# run_gslora_cl.py
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -24,20 +23,17 @@ def evaluate(model, test_loaders, device):
     return task_accuracies
 
 def main():
-    # --- Config ---
     DEVICE = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
-    NUM_TASKS = 5  # Reduced for speed
-    EPOCHS_PER_TASK = 5 # Reduced for speed
+    NUM_TASKS = 5  
+    EPOCHS_PER_TASK = 5 
     LR = 0.005
     LORA_RANK = 4
-    SPARSITY = 0.8 # Keep only top 20% of gradients
+    SPARSITY = 0.8 
 
     print(f"Using device: {DEVICE}")
 
-    # --- Data ---
     task_dataloaders = get_cifar100_dataloaders(num_tasks=NUM_TASKS, batch_size=64)
 
-    # --- Model ---
     # Create one model with a separate LoRA adapter for each task
     model = MultiHeadLoRAModel(num_tasks=NUM_TASKS, rank=LORA_RANK).to(DEVICE)
     
@@ -54,7 +50,6 @@ def main():
         # Select the specific model for the current task
         task_model = model.tasks_models[task_id]
 
-        # --- GS-LoRA Step: Get mask for the current task's adapter ---
         masks = get_gradient_sparse_mask(task_model, train_loader, DEVICE, sparsity=SPARSITY)
 
         optimizer = optim.Adam([p for p in task_model.parameters() if p.requires_grad], lr=LR)

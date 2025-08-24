@@ -1,4 +1,3 @@
-# strategies.py
 import torch
 import torch.nn as nn
 import random
@@ -9,7 +8,6 @@ class ExperienceReplay(nn.Module):
         self.buffer_size_per_task = buffer_size_per_task
         self.buffer = []
 
-    # این متد دیگر نیازی به محاسبه loss ندارد و فقط داده را برمی‌گرداند
     def get_rehearsal_batch(self, batch_size):
         if not self.buffer:
             return None
@@ -28,7 +26,6 @@ class ExperienceReplay(nn.Module):
     def on_task_end(self, task_id, train_loader):
         print(f"Updating memory buffer after Task {task_id + 1}...")
         
-        # ... (منطق مدیریت و اضافه کردن به حافظه مانند قبل باقی می‌ماند)
         num_samples_to_add = self.buffer_size_per_task
         samples_added = 0
         

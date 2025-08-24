@@ -34,7 +34,7 @@ def get_cifar100_dataloaders(num_tasks=10, batch_size=32):
         transforms.Normalize((0.5071, 0.4867, 0.4408), (0.2675, 0.2565, 0.2761))
     ])
 
-    # Load full datasets
+    # Load datasets
     train_dataset = torchvision.datasets.CIFAR100(root='./data', train=True, download=True, transform=transform)
     test_dataset = torchvision.datasets.CIFAR100(root='./data', train=False, download=True, transform=transform)
 

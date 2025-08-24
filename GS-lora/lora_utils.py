@@ -1,5 +1,3 @@
-# lora_utils.py
-
 import torch
 import torch.nn as nn
 import numpy as np
@@ -31,9 +29,7 @@ class LoRALinear(nn.Module):
         # Original path (frozen)
         frozen_output = self.linear(x)
         
-        # 💡 FIX: Corrected the matrix multiplication order for LoRA
         if self.rank > 0:
-            # Correct logic: x @ A.T @ B.T
             lora_output = (x @ self.lora_A.T) @ self.lora_B.T
             return frozen_output + lora_output * self.scaling
             
@@ -67,7 +63,7 @@ def get_gradient_sparse_mask(model, dataloader, device, sparsity=0.5):
 
     criterion = nn.CrossEntropyLoss()
     for i, (inputs, targets, _) in enumerate(dataloader):
-        if i >= 3: # Probe on a few batches
+        if i >= 3:
             break
         inputs, targets = inputs.to(device), targets.to(device)
         model.zero_grad()

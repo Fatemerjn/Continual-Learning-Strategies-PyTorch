@@ -1,4 +1,3 @@
-# main.py (final corrected version)
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -9,7 +8,6 @@ import numpy as np
 from utils import get_cifar100_dataloaders
 from strategies import ExperienceReplay
 
-# --- Multi-Head Model Definition ---
 class MultiHeadResNet(nn.Module):
     def __init__(self, num_tasks, num_classes_per_task):
         super().__init__()
@@ -38,23 +36,18 @@ def evaluate(model, test_loader, device, task_id):
             correct += (predicted == labels).sum().item()
     return 100 * correct / total
 
-# --- Main Function ---
 def main():
-    # --- Configuration ---
     NUM_TASKS = 10
     CLASSES_PER_TASK = 10
     BATCH_SIZE = 64
     EPOCHS_PER_TASK = 10
     LR = 0.01
 
-    # --- Device Setup ---
     DEVICE = torch.device("mps" if torch.backends.mps.is_available() else "cpu")
     print(f"Using device: {DEVICE}")
 
-    # --- Data Loading ---
     task_dataloaders = get_cifar100_dataloaders(num_tasks=NUM_TASKS, batch_size=BATCH_SIZE)
 
-    # --- Model Setup ---
     model = MultiHeadResNet(num_tasks=NUM_TASKS, num_classes_per_task=CLASSES_PER_TASK).to(DEVICE)
     
     # --- Strategy Setup ---
@@ -88,7 +81,6 @@ def main():
                         
                         for t_id in range(task_id):
                             mask = (re_task_ids == t_id)
-                            # 💡 FINAL FIX: Check if the batch for this task has more than 1 sample
                             if mask.sum() > 1:
                                 re_outputs = model(re_images[mask], task_id=t_id)
                                 loss += criterion(re_outputs, re_labels[mask])
