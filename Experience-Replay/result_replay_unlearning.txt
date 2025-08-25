@@ -1,0 +1,29 @@
+--- Phase 1: Continual Learning ---
+
+--- Training on Task 1/5 ---
+
+--- Training on Task 2/5 ---
+
+--- Training on Task 3/5 ---
+
+--- Training on Task 4/5 ---
+
+--- Training on Task 5/5 ---
+
+--- Phase 2: Accuracies BEFORE Unlearning ---
+Task 1 Accuracy: 12.75%
+Task 2 Accuracy: 20.15%
+Task 3 Accuracy: 28.35%
+Task 4 Accuracy: 37.20%
+Task 5 Accuracy: 67.20%
+Average Accuracy: 33.13%
+
+--- Starting Unlearning Process for Task 3 ---
+
+--- Phase 4: Accuracies AFTER Unlearning Task 3 ---
+Task 1 Accuracy: 19.55%  (RETAINED) | Change: +6.80%
+Task 2 Accuracy: 26.95%  (RETAINED) | Change: +6.80%
+Task 3 Accuracy: 28.95%  (FORGOTTEN) | Change: +0.60%
+Task 4 Accuracy: 41.95%  (RETAINED) | Change: +4.75%
+Task 5 Accuracy: 65.85%  (RETAINED) | Change: -1.35%
+Average Accuracy on Retained Tasks: 38.58%

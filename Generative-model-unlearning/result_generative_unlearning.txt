@@ -1,0 +1,39 @@
+Using device: mps
+--- Phase 1: Continual Learning ---
+
+--- Training Solver on Task 1/5 ---
+Training generator for Task 1...
+
+--- Training Solver on Task 2/5 ---
+Training generator for Task 2...
+
+--- Training Solver on Task 3/5 ---
+Training generator for Task 3...
+
+--- Training Solver on Task 4/5 ---
+Training generator for Task 4...
+
+--- Training Solver on Task 5/5 ---
+Training generator for Task 5...
+
+--- Phase 2: Accuracies BEFORE Unlearning ---
+Task 1 Accuracy: 3.90%
+Task 2 Accuracy: 8.00%
+Task 3 Accuracy: 6.65%
+Task 4 Accuracy: 9.40%
+Task 5 Accuracy: 12.60%
+Average Accuracy: 8.11%
+
+--- Phase 3: 'Unlearning' Task 3 by excluding its generator ---
+Performing a short fine-tuning on remaining tasks...
+
+--- Phase 4: Accuracies AFTER Unlearning Task 3 ---
+Task 1 Accuracy: 4.10%  (RETAINED) | Change: +0.20%
+Task 2 Accuracy: 6.50%  (RETAINED) | Change: -1.50%
+Task 3 Accuracy: 4.80%  (FORGOTTEN) | Change: -1.85%
+Task 4 Accuracy: 5.20%  (RETAINED) | Change: -4.20%
+Task 5 Accuracy: 5.10%  (RETAINED) | Change: -7.50%
+
+Before Unlearning Average Accuracy: 8.11%
+After Unlearning Average Accuracy: 5.14%
+Average Accuracy on Retained Tasks: 5.22%

@@ -1,0 +1,33 @@
+
+--- Training on Task 1/5 ---
+
+--- Training on Task 2/5 ---
+
+--- Training on Task 3/5 ---
+
+--- Training on Task 4/5 ---
+
+--- Training on Task 5/5 ---
+
+--- Accuracies BEFORE Unlearning ---
+Task 1 Accuracy: 21.95%
+Task 2 Accuracy: 26.05%
+Task 3 Accuracy: 31.65%
+Task 4 Accuracy: 36.85%
+Task 5 Accuracy: 70.50%
+Average Accuracy: 37.40%
+
+--- Starting Unlearning Process for Task 3 ---
+Unlearning Epoch 1/5, Last Total Loss: 2.5205
+Unlearning Epoch 2/5, Last Total Loss: 0.2888
+Unlearning Epoch 3/5, Last Total Loss: 3.6848
+Unlearning Epoch 4/5, Last Total Loss: 2.5971
+Unlearning Epoch 5/5, Last Total Loss: 1.8786
+
+--- Accuracies AFTER Unlearning Task 3 ---
+Task 1 Accuracy: 32.50%  (RETAINED) | Change: +10.55%
+Task 2 Accuracy: 37.65%  (RETAINED) | Change: +11.60%
+Task 3 Accuracy: 31.15%  (FORGOTTEN) | Change: -0.50%
+Task 4 Accuracy: 47.45%  (RETAINED) | Change: +10.60%
+Task 5 Accuracy: 61.30%  (RETAINED) | Change: -9.20%
+Average Accuracy: 42.01%

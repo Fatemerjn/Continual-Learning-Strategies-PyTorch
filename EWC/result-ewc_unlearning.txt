@@ -1,0 +1,39 @@
+--- Phase 1: Continual Learning ---
+
+--- Training on Task 1/5 ---
+Calculating Fisher Information Matrix for Task 1...
+Fisher Matrix calculation complete.
+
+--- Training on Task 2/5 ---
+Calculating Fisher Information Matrix for Task 2...
+Fisher Matrix calculation complete.
+
+--- Training on Task 3/5 ---
+Calculating Fisher Information Matrix for Task 3...
+Fisher Matrix calculation complete.
+
+--- Training on Task 4/5 ---
+Calculating Fisher Information Matrix for Task 4...
+Fisher Matrix calculation complete.
+
+--- Training on Task 5/5 ---
+Calculating Fisher Information Matrix for Task 5...
+Fisher Matrix calculation complete.
+
+--- Phase 2: Accuracies BEFORE Unlearning ---
+Task 1 Accuracy: 2.00%
+Task 2 Accuracy: 3.40%
+Task 3 Accuracy: 5.75%
+Task 4 Accuracy: 7.10%
+Task 5 Accuracy: 56.70%
+Average Accuracy: 14.99%
+
+--- Starting Unlearning Process for Task 2 ---
+
+--- Phase 3: Accuracies AFTER Unlearning Task 2 ---
+Task 1 Accuracy: 2.45%  (RETAINED) | Change: +0.45%
+Task 2 Accuracy: 4.55%  (FORGOTTEN) | Change: +1.15%
+Task 3 Accuracy: 5.30%  (RETAINED) | Change: -0.45%
+Task 4 Accuracy: 7.35%  (RETAINED) | Change: +0.25%
+Task 5 Accuracy: 57.25%  (RETAINED) | Change: +0.55%
+Average Accuracy on Retained Tasks: 18.09%

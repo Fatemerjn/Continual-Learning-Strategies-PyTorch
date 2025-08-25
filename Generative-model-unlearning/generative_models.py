@@ -71,20 +71,29 @@ class GenerativeReplay(nn.Module):
         if task_id == 0:
             return None
         
-        samples_per_task = batch_size // task_id
+        # Filter out any 'unlearned' (None) generators
+        active_generators = [(i, gen) for i, gen in enumerate(self.generators) if gen is not None and i < task_id]
+        
+        if not active_generators:
+            return None
+            
+        samples_per_task = batch_size // len(active_generators)
+        if samples_per_task == 0: samples_per_task = 1
+        
         re_images, re_labels, re_task_ids = [], [], []
 
-        for t_id in range(task_id):
-            generator = self.generators[t_id]
+        for t_id, generator in active_generators:
+            # 💡 FIX: The check is now implicitly handled by iterating over active_generators
             generator.eval()
             with torch.no_grad():
-                # Generate random samples
                 z = torch.randn(samples_per_task, self.generators[0].fc_mu.out_features).to(self.device)
                 generated_images = generator.decoder(generator.decoder_fc(z))
                 re_images.append(generated_images)
-                # For simplicity, assign random labels from the task's class range
                 re_labels.append(torch.randint(0, 10, (samples_per_task,)))
                 re_task_ids.append(torch.full((samples_per_task,), t_id, dtype=torch.long))
+
+        if not re_images:
+            return None
 
         return torch.cat(re_images), torch.cat(re_labels), torch.cat(re_task_ids)
 
